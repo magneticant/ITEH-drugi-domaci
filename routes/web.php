@@ -24,8 +24,8 @@ Route::get('/test', function(){
     return "Hello World! Our first route is working as intended.";
 }); //testni primer za rute.
 
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
+// Route::get('/users', [UserController::class, 'index']);
+// Route::get('/users/{id}', [UserController::class, 'show']);
 
 
 
