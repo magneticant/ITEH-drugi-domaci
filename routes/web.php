@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function(){
+    return "Hello World! Our first route is working as intended.";
+}); //testni primer za rute.
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+
+
+
