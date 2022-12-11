@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ControllerResource extends JsonResource
+class AppointmentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -12,7 +12,7 @@ class ControllerResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public static $wrap = 'post';
+    public static $wrap = 'appointment';
     public function toArray($request)
     {
         return [
@@ -23,6 +23,5 @@ class ControllerResource extends JsonResource
             'user_id'=>$this->resource->user_id,
             'doctor_id'=>$this->resource->doctor_id,  
         ];
-        
     }
 }

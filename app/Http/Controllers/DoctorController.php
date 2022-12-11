@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class DoctorController extends Controller
     public function index()
     {
         //
-        return Doctor::all();
+        // return Doctor::all();
+        $doctors = Doctor::all();
+        return DoctorResource::collection($doctors);
     }
 
     /**
@@ -45,14 +48,15 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show($doctor_id)
+    public function show(Doctor $doctor)
     {
-        //
-        $doctor = Doctor::find($doctor_id);
-        if(is_null($doctor)){
-            return response()->json("Data not found",404);
-        }
-        return response()->json($doctor);
+        // //
+        // $doctor = Doctor::find($doctor_id);
+        // if(is_null($doctor)){
+        //     return response()->json("Data not found",404);
+        // }
+        // return response()->json($doctor);
+        return new DoctorResource($doctor);
     }
 
     /**

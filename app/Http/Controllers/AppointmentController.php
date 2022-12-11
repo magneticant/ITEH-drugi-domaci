@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class AppointmentController extends Controller
     public function index()
     {
         //
-        return Appointment::all();
+        // return Appointment::all();
+        $appointments = Appointment::all();
+        return AppointmentResource::collection($appointments);
     }
 
     /**

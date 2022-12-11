@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,9 @@ class UserController extends Controller
     {
         //
        // return User::all();
-        return DB::table('users')->get();
+       // return DB::table('users')->get();
+       $users = User::all();
+       return UserResource::collection($users);
     }
 
     /**
@@ -47,14 +50,15 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
-        $user = User::find($id);
-        if(is_null($user)){
-        return response()->json('Data not found', 404);
-    }
-        return response()->json($user);
+    //     //
+    //     $user = User::find($id);
+    //     if(is_null($user)){
+    //     return response()->json('Data not found', 404);
+    // }
+    //     return response()->json($user);
+    return new UserResource($user);
     }
 
     /**
