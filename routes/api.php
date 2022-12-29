@@ -45,3 +45,13 @@ Route::resource('users.doctors', UserDoctorController::class);
 Route::resource('doctors.appointments', DoctorAppointmentController::class);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::group(['middleware'=>['auth:sanctum']], function(){
+    Route::get('/userprofile', function(Request $request){
+        return auth()->user();
+    });
+    Route::resource('appointments', AppointmentController::class)->only(['update', 'store', 'destroy']);
+
+    Route::post('/logout', [AuthController::class, 'logout'] );
+});
+
+Route::resource('appointments', AppointmentController::class)->only(['index']);
